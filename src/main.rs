@@ -1,4 +1,7 @@
 #![allow(clippy::large_enum_variant, clippy::too_many_arguments)]
+// Existing application paths have not yet been migrated to Option::map_or_default.
+// Keep this exception local until that cleanup is done.
+#![allow(clippy::map_unwrap_or)]
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod appearance;
