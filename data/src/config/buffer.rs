@@ -946,6 +946,9 @@ pub struct InternalMessages {
     pub success: InternalMessage,
     pub error: InternalMessage,
     pub default: InternalMessageDefault,
+    /// By default connection loss/restoration is repeated in every channel and query.
+    /// Set to false to keep those notices only in the server buffer.
+    pub show_connection_events_in_chat: Option<bool>,
 }
 
 impl InternalMessages {
