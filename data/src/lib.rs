@@ -1,4 +1,7 @@
 #![allow(clippy::large_enum_variant, clippy::too_many_arguments)]
+// Existing data paths have not yet been migrated to Option::map_or_default.
+// Keep this exception local to the data crate until that cleanup is done.
+#![allow(clippy::map_unwrap_or)]
 
 pub use self::appearance::Theme;
 pub use self::buffer::Buffer;
