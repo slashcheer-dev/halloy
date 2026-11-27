@@ -1,5 +1,9 @@
 # Unreleased
 
+Added:
+
+- `buffer.internal_messages.show_connection_events_in_chat` to keep connection loss/restoration notices in the server buffer; the web build disables them in chat by default.
+
 # 2026.10 (2026-11-03)
 
 Added:
