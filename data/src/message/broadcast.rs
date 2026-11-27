@@ -173,8 +173,21 @@ impl BroadcastWithContext {
         casemapping: isupport::CaseMap,
         config: &Config,
     ) -> Vec<message::Message> {
+        // Connection-state broadcasts are useful in the server buffer, but
+        // repeating them in every chat buffer can bury actual conversation.
+        // Keep other internal errors and successes visible everywhere.
+        let hide_connection_events_in_chat =
+            config.buffer.internal_messages.show_connection_events_in_chat == Some(false)
+                && matches!(
+                    &self.inner,
+                    Broadcast::Disconnected { .. } | Broadcast::Reconnected
+                );
+
         targets
             .into_iter()
+            .filter(|target| {
+                !hide_connection_events_in_chat || matches!(target, message::Target::Server)
+            })
             .map(|target| {
                 let content = self.inner.content(&target, casemapping, config);
 
