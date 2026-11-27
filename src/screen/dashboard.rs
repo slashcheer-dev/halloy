@@ -3414,7 +3414,10 @@ impl Dashboard {
                     }
                 }
 
-                let Focus { mut window, mut pane } = self.panes.focus;
+                let Focus {
+                    mut window,
+                    mut pane,
+                } = self.panes.focus;
 
                 // Nothing focused yet (e.g. a fresh page): replace the main
                 // window's first pane instead of doing nothing.

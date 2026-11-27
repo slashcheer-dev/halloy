@@ -152,6 +152,11 @@ enabled = false
 [preview]
 enabled = false
 
+# Keep connection loss/restoration visible in the server buffer without
+# filling every room and direct message with repeated status notices.
+[buffer.internal_messages]
+show_connection_events_in_chat = false
+
 # Halloy fades join/part/quit/nick/away lines with an alpha scaled to the
 # background's lightness: about 22% on the dark theme and 60% on the light one,
 # which makes them unreadable in both. The themes' server-message color

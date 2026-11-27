@@ -210,9 +210,16 @@ fn message_content_impl<'a, T: Copy + 'a, M: 'a + std::clone::Clone>(
                             .is_some_and(ends_with_at_mention_marker);
                         let nick_font = |theme: &Theme| {
                             if at_mention {
-                                Some(font::get(data::appearance::theme::FontStyle::Bold))
+                                Some(font::get(
+                                    data::appearance::theme::FontStyle::Bold,
+                                ))
                             } else {
-                                theme.styles().buffer.nickname.font_style.map(font::get)
+                                theme
+                                    .styles()
+                                    .buffer
+                                    .nickname
+                                    .font_style
+                                    .map(font::get)
                             }
                         };
 
@@ -515,6 +522,7 @@ fn ends_with_at_mention_marker(fragment: &data::message::Fragment) -> bool {
         | data::message::Fragment::HighlightMatch(text) => text.as_str(),
         _ => return false,
     };
-    text.strip_suffix('@')
-        .is_some_and(|rest| rest.is_empty() || rest.ends_with(char::is_whitespace))
+    text.strip_suffix('@').is_some_and(|rest| {
+        rest.is_empty() || rest.ends_with(char::is_whitespace)
+    })
 }
